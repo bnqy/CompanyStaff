@@ -1,5 +1,6 @@
 ﻿using Contracts;
 using LoggerService;
+using Repository;
 
 namespace CompanyStaff.Extensions
 {
@@ -24,5 +25,8 @@ namespace CompanyStaff.Extensions
 
         public static void ConfigLoggerService(this IServiceCollection services) => 
             services.AddSingleton<ILoggerManager, LoggerManager>();
+
+        public static void ConfigRepositoryManager(this IServiceCollection services) => 
+            services.AddScoped<IRepositoryManager, RepositoryManager>();
     }
 }
