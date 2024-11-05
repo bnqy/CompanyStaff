@@ -16,7 +16,8 @@ builder.Services.ConfigRepositoryManager();
 builder.Services.ConfigServiceManager();
 builder.Services.ConfigSqlContext(builder.Configuration);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddApplicationPart(typeof(CompanyStaff.Presentation.AssemblyReference).Assembly);
 
 var app = builder.Build();
 
