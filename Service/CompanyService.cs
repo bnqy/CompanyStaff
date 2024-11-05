@@ -1,4 +1,5 @@
-﻿using Contracts;
+﻿using AutoMapper;
+using Contracts;
 using Entities.Models;
 using Service.Contracts;
 using Shared.DTOs;
@@ -14,11 +15,14 @@ namespace Service
     {
         private readonly ILoggerManager loggerManager;
         private readonly IRepositoryManager repositoryManager;
+        private readonly IMapper mapper;
 
-        public CompanyService(IRepositoryManager repositoryManager, ILoggerManager loggerManager)
+        public CompanyService(IRepositoryManager repositoryManager, 
+            ILoggerManager loggerManager, IMapper mapper)
         {
             this.repositoryManager = repositoryManager;
             this.loggerManager = loggerManager;
+            this.mapper = mapper;
         }
 
         public IEnumerable<CompanyDTO> GetCompanies(bool trackChanges)
@@ -27,9 +31,11 @@ namespace Service
             {
                 var companies = repositoryManager.Company.GetCompanies(trackChanges);
 
-                var companiesDto = companies.Select(c => 
+                /*var companiesDto = companies.Select(c => 
                 new CompanyDTO(c.Id, c.Name ?? "", string.Join(' ', c.Address, c.Country)))
-                    .ToList();
+                    .ToList();*/
+
+                var companiesDto = mapper.Map<IEnumerable<CompanyDTO>>(companies);
 
                 return companiesDto;
             }

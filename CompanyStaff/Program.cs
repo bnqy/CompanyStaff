@@ -15,6 +15,7 @@ builder.Services.ConfigLoggerService();
 builder.Services.ConfigRepositoryManager();
 builder.Services.ConfigServiceManager();
 builder.Services.ConfigSqlContext(builder.Configuration);
+builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddControllers()
     .AddApplicationPart(typeof(CompanyStaff.Presentation.AssemblyReference).Assembly);
