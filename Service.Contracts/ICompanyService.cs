@@ -1,10 +1,9 @@
 ﻿using Shared.DTOs;
 
-namespace Service.Contracts
+namespace Service.Contracts;
+
+public interface ICompanyService
 {
-    public interface ICompanyService
-    {
-        IEnumerable<CompanyDTO> GetCompanies(bool trackChanges);
-        CompanyDTO GetCompany(Guid companyId, bool trackChanges);
-    }
+    IEnumerable<CompanyDTO> GetCompanies(bool trackChanges);
+    CompanyDTO GetCompany(Guid companyId, bool trackChanges);
 }

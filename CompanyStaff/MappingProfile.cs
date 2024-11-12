@@ -2,15 +2,16 @@
 using Entities.Models;
 using Shared.DTOs;
 
-namespace CompanyStaff
+namespace CompanyStaff;
+
+public class MappingProfile : Profile
 {
-    public class MappingProfile : Profile
+    public MappingProfile()
     {
-        public MappingProfile()
-        {
-             CreateMap<Company, CompanyDTO>()
-                .ForCtorParam("FullAddress",
-                opt => opt.MapFrom(x => string.Join(' ', x.Address, x.Country)));
-        }
+         CreateMap<Company, CompanyDTO>()
+            .ForCtorParam("FullAddress",
+            opt => opt.MapFrom(x => string.Join(' ', x.Address, x.Country)));
+
+        CreateMap<Employee, EmployeeDTO>();
     }
 }
